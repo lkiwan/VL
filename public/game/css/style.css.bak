@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    background: #000;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Loading Screen */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0a10 50%, #0a0a0a 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+    transition: opacity 1.5s ease, visibility 1.5s ease;
+}
+
+#loading-screen.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+#hello-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 5rem;
+    color: #fff;
+    text-shadow: 0 0 30px rgba(255, 100, 150, 0.8),
+        0 0 60px rgba(255, 100, 150, 0.5);
+    margin-bottom: 2rem;
+    letter-spacing: 3px;
+}
+
+#click-prompt {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+#click-prompt.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#click-prompt p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+}
+
+/* Heart Pulse Animation */
+.heart-pulse {
+    width: 40px;
+    height: 40px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.heart-pulse::before,
+.heart-pulse::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 26px;
+    height: 40px;
+    background: linear-gradient(180deg, #ff6b95 0%, #ff3366 100%);
+    border-radius: 26px 26px 0 0;
+    transform-origin: bottom;
+}
+
+.heart-pulse::before {
+    left: 20px;
+    transform: rotate(-45deg);
+}
+
+.heart-pulse::after {
+    left: 0;
+    transform: rotate(45deg);
+}
+
+.heart-pulse {
+    animation: heartbeat 1.2s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    25% {
+        transform: scale(1.1);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+
+    60% {
+        transform: scale(1.15);
+    }
+}
+
+/* Main Canvas */
+#scene-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+/* Love Message Overlay */
+#love-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 500;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 2s ease;
+}
+
+#love-message.show {
+    opacity: 1;
+}
+
+#love-message h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 6rem;
+    color: #fff;
+    text-shadow: 0 0 40px rgba(255, 100, 150, 0.9),
+        0 0 80px rgba(255, 100, 150, 0.6),
+        0 0 120px rgba(255, 50, 100, 0.4);
+    animation: glow 3s ease-in-out infinite alternate;
+    text-align: center;
+}
+
+#love-message p {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 1rem;
+    letter-spacing: 3px;
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 40px rgba(255, 100, 150, 0.9), 0 0 80px rgba(255, 100, 150, 0.6);
+    }
+
+    100% {
+        text-shadow: 0 0 60px rgba(255, 150, 180, 1), 0 0 120px rgba(255, 100, 150, 0.8);
+    }
+}
+
+/* Floating Hearts in Message */
+.hearts-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 2rem;
+    color: #ff6b95;
+    animation: floatUp 6s ease-in-out infinite;
+    opacity: 0.6;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.6;
+    }
+
+    90% {
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Controls Hint */
+#controls-hint {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+#controls-hint.show {
+    opacity: 1;
+}
+
+#controls-hint p {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+}
+
+/* Utility */
+.hidden {
+    display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #hello-text {
+        font-size: 3rem;
+    }
+
+    #love-message h1 {
+        font-size: 3.5rem;
+    }
+
+    #click-prompt p {
+        font-size: 1rem;
+        letter-spacing: 2px;
+    }
+}
+
+/* Letter Overlay Styles */
+#letter-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 0, 20, 0.85);
+    /* Dark romantic overlay */
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+#letter-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.letter-paper {
+    background: #fffdf0;
+    /* Parchment color */
+    width: 90%;
+    max-width: 600px;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 0 30px rgba(255, 100, 150, 0.3), inset 0 0 50px rgba(139, 69, 19, 0.1);
+    position: relative;
+    transform: translateY(20px);
+    transition: transform 0.5s ease;
+    font-family: 'Times New Roman', serif;
+    /* Classic letter font */
+    color: #4a3b3b;
+    text-align: center;
+}
+
+#letter-overlay.show .letter-paper {
+    transform: translateY(0);
+}
+
+.letter-paper h2 {
+    font-family: 'Dancing Script', cursive;
+    /* If available, or fallback */
+    color: #d6336c;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+}
+
+.letter-body {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.letter-body p {
+    margin-bottom: 15px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.3s;
+}
+
+.close-btn:hover {
+    color: #d6336c;
+}
+
+.next-btn {
+    background: linear-gradient(45deg, #ff6b8a, #ff9eb3);
+    border: none;
+    padding: 12px 30px;
+    color: white;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+}
+
+.next-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(255, 107, 138, 0.4);
+}

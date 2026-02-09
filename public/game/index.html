@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omar & Chaymae</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="files/assets/music/romantic-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Music Control Button -->
+    <button id="musicToggle" class="music-control" style="display: none;">
+        <span class="music-icon">🔊</span>
+    </button>
+
+    <!-- Cinematic Intro Overlay -->
+    <div id="loading-screen" class="intro-overlay">
+        <div class="intro-content">
+            <h1 class="main-title spotlight">Omar & Chaymae</h1>
+            <p class="subtitle bounce">The Story of Us</p>
+            <div id="click-prompt" class="hidden" style="margin-top: 2rem; cursor: pointer;">
+                <p>Click to Enter Our World</p>
+                <div class="heart-pulse" style="margin: 0 auto;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Love Message Overlay -->
+    <div id="love-message" class="hidden">
+        <h1>I Love You Chaymae</h1>
+        <p>Forever & Always - Omar</p>
+        <div class="hearts-container"></div>
+    </div>
+
+    <!-- Main 3D Canvas -->
+    <canvas id="scene-canvas"></canvas>
+
+    <!-- Controls Hint -->
+    <div id="controls-hint" class="hidden">
+        <p>Drag to explore | Scroll to zoom | Click glowing items</p>
+    </div>
+
+    <!-- Letter Overlay -->
+    <div id="letter-overlay" class="hidden">
+        <div class="letter-paper">
+            <div class="close-btn" onclick="hideLetter()">×</div>
+            <h2 id="letter-title">Letter Title</h2>
+            <div id="letter-content" class="letter-body">
+                <!-- Content goes here -->
+            </div>
+            <button class="next-btn" onclick="nextLetter()">Close with Love</button>
+        </div>
+    </div>
+
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+    <!-- Custom Scripts -->
+    <script src="js/audio.js"></script>
+    <script src="js/letters.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

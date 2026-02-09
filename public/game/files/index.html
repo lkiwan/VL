@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day ❤️</title>
+    <meta name="description" content="A special Valentine's Day message for someone special">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animations.css">
+</head>
+<body>
+    <!-- Cinematic Intro V2 (The "Whale" Structure) -->
+    <div id="cinematic-intro">
+        <canvas id="particle-canvas"></canvas>
+        <div class="spotlight-layer">
+            <div class="beam beam-left"></div>
+            <div class="beam beam-right"></div>
+        </div>
+        <div class="fog-layer"></div>
+        <div class="intro-content">
+            <h1 class="intro-name">For [Name]</h1>
+            <p class="click-hint">Click to Begin the Journey</p>
+        </div>
+    </div>
+
+    <!-- Cursor Trail Container -->
+    <div id="cursorTrail"></div>
+
+    <!-- Background Music (starts on user interaction) -->
+    <audio id="bgMusic" loop>
+        <source src="assets/music/romantic-music.mp3" type="audio/mpeg">
+        <!-- REPLACE 'assets/music/romantic-music.mp3' with your actual music file -->
+    </audio>
+
+    <!-- Music Control Button -->
+    <button id="musicToggle" class="music-control" style="display: none;">
+        <span class="music-icon">🔊</span>
+        <div class="music-waves">
+            <span></span><span></span><span></span>
+        </div>
+    </button>
+
+    <!-- Progress Indicator -->
+    <div class="progress-dots">
+        <div class="dot active" data-section="0"></div>
+        <div class="dot" data-section="1"></div>
+        <div class="dot" data-section="2"></div>
+        <div class="dot" data-section="3"></div>
+        <div class="dot" data-section="4"></div>
+        <div class="dot" data-section="5"></div>
+        <div class="dot" data-section="6"></div>
+        <div class="dot" data-section="7"></div>
+    </div>
+
+    <!-- SECTION 1: LANDING PAGE -->
+    <section id="landing" class="section active">
+        <div class="hearts-container" id="heartsContainer"></div>
+        <div class="landing-content">
+            <h1 class="main-title fade-in">A Love Story</h1>
+            <p class="subtitle fade-in-delay">Made Just For You</p>
+            <button id="startButton" class="start-btn pulse">Click to Start Our Journey</button>
+        </div>
+    </section>
+
+    <!-- SECTION 2: WELCOME MESSAGE -->
+    <section id="welcome" class="section">
+        <div class="welcome-content">
+            <h1 class="welcome-title">Happy Valentine's Day</h1>
+            <h2 class="girlfriend-name">[Your Girlfriend's Name]</h2>
+            <!-- REPLACE [Your Girlfriend's Name] with her actual name -->
+            
+            <div class="couple-container">
+                <div class="couple-character">
+                    <!-- PLACEHOLDER: Replace with your couple illustration -->
+                    <div class="character-placeholder">
+                        <div class="char-circle char-left"></div>
+                        <div class="char-circle char-right"></div>
+                        <div class="heart-between">❤️</div>
+                    </div>
+                </div>
+                <p class="welcome-text">I created this special journey to show you how much you mean to me...</p>
+            </div>
+            
+            <button class="continue-btn" data-next="howWeMet">Continue →</button>
+        </div>
+    </section>
+
+    <!-- SECTION 3: HOW WE MET -->
+    <section id="howWeMet" class="section">
+        <div class="story-container">
+            <h2 class="section-title">How We Met</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <div class="photo-placeholder tilt-effect">
+                            <!-- REPLACE with actual photo in assets/images/ -->
+                            <img src="assets/images/photo1.jpg" alt="Our first meeting" class="story-photo">
+                            <div class="placeholder-text">Photo 1: The First Day</div>
+                        </div>
+                        <p class="story-text">
+                            From the moment I saw you, I knew there was something special. 
+                            Your smile lit up the entire room, and I couldn't help but be drawn to you.
+                            <!-- CUSTOMIZE this text with your actual story -->
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-left">
+                    <div class="timeline-content">
+                        <p class="story-text">
+                            That first conversation we had felt like time stood still. 
+                            Every word, every laugh, every moment was perfect.
+                            <!-- CUSTOMIZE this text -->
+                        </p>
+                        <div class="photo-placeholder tilt-effect">
+                            <img src="assets/images/photo2.jpg" alt="Early days" class="story-photo">
+                            <div class="placeholder-text">Photo 2: Getting to Know You</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item" data-aos="fade-right">
+                    <div class="timeline-content">
+                        <div class="photo-placeholder tilt-effect">
+                            <img src="assets/images/photo3.jpg" alt="Together" class="story-photo">
+                            <div class="placeholder-text">Photo 3: Falling in Love</div>
+                        </div>
+                        <p class="story-text">
+                            And just like that, I fell completely and hopelessly in love with you.
+                            <!-- CUSTOMIZE this text -->
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Hearts -->
+            <div class="secret-hearts">
+                <div class="secret-heart" data-message="You make every day brighter! ☀️">💖</div>
+                <div class="secret-heart" data-message="I love your laugh! 😊">💕</div>
+                <div class="secret-heart" data-message="You're my best friend! 🌟">💗</div>
+            </div>
+
+            <button class="continue-btn" data-next="memories">Continue →</button>
+        </div>
+    </section>
+
+    <!-- SECTION 4: OUR FAVORITE MEMORIES -->
+    <section id="memories" class="section">
+        <div class="memories-container">
+            <h2 class="section-title">Our Favorite Memories</h2>
+            
+            <div class="carousel-container">
+                <button class="carousel-btn prev" id="prevBtn">❮</button>
+                
+                <div class="carousel">
+                    <div class="carousel-track" id="carouselTrack">
+                        <!-- Memory Slide 1 -->
+                        <div class="carousel-slide active">
+                            <div class="memory-card tilt-effect">
+                                <div class="memory-photo">
+                                    <img src="assets/images/memory1.jpg" alt="Memory 1">
+                                    <div class="placeholder-text">Memory 1</div>
+                                </div>
+                                <div class="memory-caption">
+                                    <h3>Our First Adventure</h3>
+                                    <p>Remember this amazing day? Every moment with you is an adventure.</p>
+                                    <!-- CUSTOMIZE caption -->
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Memory Slide 2 -->
+                        <div class="carousel-slide">
+                            <div class="memory-card tilt-effect">
+                                <div class="memory-photo">
+                                    <img src="assets/images/memory2.jpg" alt="Memory 2">
+                                    <div class="placeholder-text">Memory 2</div>
+                                </div>
+                                <div class="memory-caption">
+                                    <h3>That Special Evening</h3>
+                                    <p>One of the best nights of my life, just being with you.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Memory Slide 3 -->
+                        <div class="carousel-slide">
+                            <div class="memory-card tilt-effect">
+                                <div class="memory-photo">
+                                    <img src="assets/images/memory3.jpg" alt="Memory 3">
+                                    <div class="placeholder-text">Memory 3</div>
+                                </div>
+                                <div class="memory-caption">
+                                    <h3>Making Memories</h3>
+                                    <p>Every photo tells a story, and I love our story.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Memory Slide 4 -->
+                        <div class="carousel-slide">
+                            <div class="memory-card tilt-effect">
+                                <div class="memory-photo">
+                                    <img src="assets/images/memory4.jpg" alt="Memory 4">
+                                    <div class="placeholder-text">Memory 4</div>
+                                </div>
+                                <div class="memory-caption">
+                                    <h3>Pure Happiness</h3>
+                                    <p>Your smile in this photo melts my heart every time.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Memory Slide 5 -->
+                        <div class="carousel-slide">
+                            <div class="memory-card tilt-effect">
+                                <div class="memory-photo">
+                                    <img src="assets/images/memory5.jpg" alt="Memory 5">
+                                    <div class="placeholder-text">Memory 5</div>
+                                </div>
+                                <div class="memory-caption">
+                                    <h3>Together Forever</h3>
+                                    <p>Building beautiful memories, one moment at a time.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Memory Slide 6 -->
+                        <div class="carousel-slide">
+                            <div class="memory-card tilt-effect">
+                                <div class="memory-photo">
+                                    <img src="assets/images/memory6.jpg" alt="Memory 6">
+                                    <div class="placeholder-text">Memory 6</div>
+                                </div>
+                                <div class="memory-caption">
+                                    <h3>My Favorite Person</h3>
+                                    <p>Creating countless memories with you is my favorite thing.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn next" id="nextBtn">❯</button>
+            </div>
+
+            <div class="carousel-indicators" id="carouselIndicators"></div>
+            
+            <button class="continue-btn" data-next="reasons">Continue →</button>
+        </div>
+    </section>
+
+    <!-- SECTION 5: REASONS I LOVE YOU -->
+    <section id="reasons" class="section">
+        <div class="reasons-container">
+            <h2 class="section-title">Reasons I Love You</h2>
+            <p class="reasons-subtitle">Click each heart to discover why you're so special</p>
+            
+            <div class="hearts-discovered">
+                <span id="discoveredCount">0</span> / <span id="totalHearts">12</span> discovered
+            </div>
+
+            <div class="flip-cards-container">
+                <!-- Card 1 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="heart-icon">💖</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Your Beautiful Smile</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="heart-icon">💕</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>The Way You Laugh</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="heart-icon">💗</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Your Kind Heart</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="heart-icon">💝</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Your Intelligence</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="heart-icon">💓</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>How You Care for Others</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="heart-icon">💞</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Your Sense of Humor</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="heart-icon">💖</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>How You Make Me Feel</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="heart-icon">💕</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Your Passion for Life</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 9 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="heart-icon">💗</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>The Way You Support Me</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 10 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="heart-icon">💝</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Your Beautiful Eyes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 11 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="heart-icon">💓</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>How You Understand Me</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 12 -->
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="heart-icon">💞</div>
+                        </div>
+                        <div class="flip-card-back">
+                            <p>Everything About You</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collected-hearts" id="collectedHearts"></div>
+            
+            <button class="continue-btn" data-next="future">Continue →</button>
+        </div>
+    </section>
+
+    <!-- SECTION 6: OUR FUTURE TOGETHER -->
+    <section id="future" class="section">
+        <div class="future-container">
+            <h2 class="section-title">Our Future Together</h2>
+            
+            <div class="future-animation">
+                <div class="walking-couple">
+                    <div class="couple-walking">
+                        <span class="walker">🚶‍♂️</span>
+                        <span class="walker">🚶‍♀️</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="future-timeline">
+                <div class="future-item" data-aos="fade-up">
+                    <div class="future-icon">🌟</div>
+                    <h3>More Adventures</h3>
+                    <p>Exploring the world together, creating memories everywhere we go</p>
+                </div>
+
+                <div class="future-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="future-icon">🏡</div>
+                    <h3>Building Our Home</h3>
+                    <p>Creating a space filled with love, laughter, and happiness</p>
+                </div>
+
+                <div class="future-item" data-aos="fade-up" data-aos-delay="400">
+                    <div class="future-icon">💑</div>
+                    <h3>Growing Together</h3>
+                    <p>Supporting each other's dreams and growing stronger every day</p>
+                </div>
+
+                <div class="future-item" data-aos="fade-up" data-aos-delay="600">
+                    <div class="future-icon">❤️</div>
+                    <h3>Forever Love</h3>
+                    <p>A lifetime of love, happiness, and being together</p>
+                </div>
+            </div>
+
+            <button class="continue-btn" data-next="question">Continue →</button>
+        </div>
+    </section>
+
+    <!-- SECTION 7: THE BIG QUESTION -->
+    <section id="question" class="section">
+        <div class="question-container">
+            <h1 class="big-question">Will You Be My Valentine?</h1>
+            
+            <div class="buttons-container">
+                <button id="yesBtn" class="answer-btn yes-btn">YES! ❤️</button>
+                <button id="noBtn" class="answer-btn no-btn">No</button>
+            </div>
+
+            <!-- Confetti Canvas -->
+            <canvas id="confettiCanvas"></canvas>
+        </div>
+
+        <!-- Success Message (hidden initially) -->
+        <div id="successMessage" class="success-message">
+            <div class="success-content">
+                <h1 class="success-title">I Knew It! ❤️</h1>
+                <p class="success-text">You've made me the happiest person in the world!</p>
+                <div class="fireworks">
+                    <div class="firework"></div>
+                    <div class="firework"></div>
+                    <div class="firework"></div>
+                </div>
+                <button class="continue-btn" data-next="letter">Read My Letter →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 8: FINAL LOVE LETTER -->
+    <section id="letter" class="section">
+        <div class="letter-container">
+            <div class="letter-paper">
+                <h2 class="letter-title">My Dearest Love,</h2>
+                
+                <div class="letter-content" id="letterContent">
+                    <p>
+                        As I sit here writing this, my heart is overflowing with love for you. 
+                        Words can barely capture what you mean to me, but I'll try...
+                    </p>
+                    <p>
+                        You are my sunshine on cloudy days, my anchor in stormy seas, 
+                        and my greatest adventure. Every moment with you is a treasure, 
+                        every laugh we share is a melody, and every day with you is a blessing.
+                    </p>
+                    <p>
+                        You've shown me what true love really means. You've taught me patience, 
+                        kindness, and the beauty of simply being together. You make me want to 
+                        be a better person, not because I have to, but because you inspire me to be.
+                    </p>
+                    <p>
+                        I promise to love you fiercely and gently, to support your dreams, 
+                        to make you laugh when you're sad, to hold you when you need comfort, 
+                        and to dance with you in both the sunshine and the rain.
+                    </p>
+                    <p>
+                        Thank you for choosing me, for loving me, for being you. 
+                        You are my today and all of my tomorrows.
+                    </p>
+                    <p class="letter-signature">
+                        Forever yours,<br>
+                        [Your Name]
+                        <!-- REPLACE [Your Name] with your actual name -->
+                    </p>
+                </div>
+
+                <div class="letter-couple">
+                    <div class="couple-hearts">
+                        <span class="heart-float">💕</span>
+                        <span class="heart-float">💖</span>
+                        <span class="heart-float">💗</span>
+                    </div>
+                </div>
+
+                <div class="letter-actions">
+                    <button id="downloadBtn" class="download-btn">Download Our Story 💝</button>
+                    <button id="replayBtn" class="replay-btn">Replay Journey ↺</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Photo Montage Background -->
+        <div class="photo-montage">
+            <div class="montage-photo" style="background-image: url('assets/images/memory1.jpg');"></div>
+            <div class="montage-photo" style="background-image: url('assets/images/memory2.jpg');"></div>
+            <div class="montage-photo" style="background-image: url('assets/images/memory3.jpg');"></div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

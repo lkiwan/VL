@@ -1,0 +1,797 @@
+/* =====================================================
+   VALENTINE'S DAY WEBSITE - ANIMATIONS
+   ===================================================== */
+
+/* =====================================================
+   CINEMATIC INTRO V2 (The "Perfect" Structure)
+   ===================================================== */
+
+#cinematic-intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 10000;
+    /* Topmost layer */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    perspective: 1000px;
+    /* For 3D depth */
+    transition: opacity 2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#cinematic-intro.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* --- CANVAS LAYER --- */
+#particle-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+    /* Behind text, above lights */
+    pointer-events: none;
+}
+
+/* --- VOLUMETRIC SPOTLIGHTS --- */
+.spotlight-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.beam {
+    position: absolute;
+    top: -20%;
+    width: 40%;
+    height: 150%;
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(255, 255, 255, 0.05) 40%,
+            rgba(255, 255, 255, 0) 80%);
+    filter: blur(20px);
+    opacity: 0;
+    transform-origin: 50% 0%;
+    will-change: transform, opacity;
+}
+
+.beam-left {
+    left: 10%;
+    transform: rotate(30deg);
+    animation: beamRevealLeft 10s ease-out forwards;
+}
+
+.beam-right {
+    right: 10%;
+    transform: rotate(-30deg);
+    animation: beamRevealRight 10s ease-out forwards 1.5s;
+    /* Staggered start */
+}
+
+@keyframes beamRevealLeft {
+    0% {
+        opacity: 0;
+        transform: rotate(45deg) translateX(-20%);
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.8;
+        transform: rotate(20deg) translateX(10%);
+    }
+}
+
+@keyframes beamRevealRight {
+    0% {
+        opacity: 0;
+        transform: rotate(-45deg) translateX(20%);
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.8;
+        transform: rotate(-20deg) translateX(-10%);
+    }
+}
+
+/* --- ATMOSPHERIC FOG --- */
+.fog-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 15;
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjAwIDIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZmlsdGVyIGlkPSJmIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iMC42NSIgbnVtT2N0YXZlcz0iMyIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmKSIgb3BhY2l0eT0iMC41Ii8+PC9zdmc+');
+    background-size: 200px 200px;
+    opacity: 0.05;
+    animation: fogDrift 60s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes fogDrift {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 200px 100px;
+    }
+}
+
+/* --- INTRO CONTENT --- */
+.intro-content {
+    position: relative;
+    z-index: 50;
+    text-align: center;
+    cursor: pointer;
+    opacity: 0;
+    /* The "Cinematic Blur" reveal */
+    animation: cinematicReveal 4s ease-out forwards 3.5s;
+}
+
+@keyframes cinematicReveal {
+    0% {
+        opacity: 0;
+        filter: blur(20px);
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1);
+    }
+}
+
+.intro-content:hover .intro-name {
+    text-shadow: 0 0 40px rgba(255, 107, 157, 0.8), 0 0 80px rgba(255, 107, 157, 0.4);
+    transform: scale(1.05);
+    /* Subtle breathing */
+}
+
+.intro-name {
+    font-family: 'Cinzel', serif;
+    font-size: 6rem;
+    color: #fff;
+    margin-bottom: 2rem;
+    letter-spacing: 0.5rem;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    transition: all 0.5s ease-out;
+}
+
+/* The Hint */
+.click-hint {
+    color: rgba(255, 255, 255, 0.4);
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    margin-top: 2rem;
+    opacity: 0;
+    animation: hintFadeIn 2s ease-out forwards 6s, pulse 3s infinite 6s;
+}
+
+@keyframes hintFadeIn {
+    to {
+        opacity: 0.6;
+    }
+}
+
+/* =====================================================
+   EXISTING ANIMATIONS (Main Site)
+   ===================================================== */
+/* Cursor Trail */
+.cursor-trail {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    font-size: 20px;
+    animation: fadeOutTrail 1s linear forwards;
+}
+
+@keyframes fadeOutTrail {
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.5) translateY(-20px);
+    }
+}
+
+/* Tilt Effect */
+.tilt-effect {
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease;
+    will-change: transform;
+}
+
+.tilt-effect:hover {
+    z-index: 10;
+}
+
+/* Music Waves */
+.music-waves {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    height: 10px;
+    margin-left: 5px;
+}
+
+.music-waves span {
+    display: block;
+    width: 3px;
+    background-color: var(--primary-color);
+    animation: wave 1s ease-in-out infinite;
+}
+
+.music-waves span:nth-child(1) {
+    animation-delay: 0s;
+    height: 4px;
+}
+
+.music-waves span:nth-child(2) {
+    animation-delay: 0.2s;
+    height: 8px;
+}
+
+.music-waves span:nth-child(3) {
+    animation-delay: 0.4s;
+    height: 6px;
+}
+
+.music-control.muted .music-waves span {
+    animation: none;
+    height: 2px;
+    background-color: #999;
+}
+
+@keyframes wave {
+
+    0%,
+    100% {
+        height: 4px;
+    }
+
+    50% {
+        height: 12px;
+    }
+}
+
+/* Animations for Section Content */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+.fade-in-delay {
+    animation: fadeIn 1s ease-out 0.5s backwards;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.pulse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    10%,
+    30% {
+        transform: scale(0.9);
+    }
+
+    20%,
+    40% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 2rem;
+    animation: floatUp linear forwards;
+    pointer-events: none;
+}
+
+@keyframes floatHeart {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes walk {
+    0% {
+        left: -10%;
+    }
+
+    100% {
+        left: 110%;
+    }
+}
+
+@keyframes successPop {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Firework (CSS version - retained for fallback) */
+@keyframes fireworkExplosion {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+        box-shadow: 0 0 0 0 #ff0000;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+        box-shadow: 0 -100px 0 20px #ff0000;
+    }
+}
+
+@keyframes floatIn {
+    from {
+        transform: scale(0) translateY(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.shimmer {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+    background-size: 1000px 100%;
+    animation: shimmer 3s infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-20px);
+    }
+
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px rgba(255, 107, 157, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(255, 107, 157, 1), 0 0 30px rgba(255, 107, 157, 0.8);
+    }
+}
+
+.glow {
+    animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes typewriter {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blinkCursor {
+    50% {
+        border-right-color: transparent;
+    }
+}
+
+.typewriter {
+    overflow: hidden;
+    border-right: 2px solid;
+    white-space: nowrap;
+    animation: typewriter 3s steps(40) 1s forwards, blinkCursor 0.75s step-end infinite;
+}
+
+@keyframes confettiFall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.confetti-piece {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    animation: confettiFall linear forwards;
+    pointer-events: none;
+}
+
+@keyframes wiggle {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-10deg);
+    }
+
+    75% {
+        transform: rotate(10deg);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes zoomOut {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+}
+
+@keyframes rainbowText {
+    0% {
+        color: #ff0000;
+    }
+
+    16% {
+        color: #ff7700;
+    }
+
+    33% {
+        color: #ffff00;
+    }
+
+    50% {
+        color: #00ff00;
+    }
+
+    66% {
+        color: #0000ff;
+    }
+
+    83% {
+        color: #ff00ff;
+    }
+
+    100% {
+        color: #ff0000;
+    }
+}
+
+.rainbow {
+    animation: rainbowText 3s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes elasticBounce {
+    0% {
+        transform: scale(1, 1);
+    }
+
+    10% {
+        transform: scale(1.1, 0.9);
+    }
+
+    30% {
+        transform: scale(0.9, 1.1);
+    }
+
+    50% {
+        transform: scale(1.05, 0.95);
+    }
+
+    57% {
+        transform: scale(1, 1);
+    }
+
+    64% {
+        transform: scale(1.02, 0.98);
+    }
+
+    100% {
+        transform: scale(1, 1);
+    }
+}
+
+@keyframes slideAndFade {
+    from {
+        transform: translateX(-30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+    transition: all 0.6s ease;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-100 {
+    animation-delay: 0.1s;
+}
+
+.delay-200 {
+    animation-delay: 0.2s;
+}
+
+.delay-300 {
+    animation-delay: 0.3s;
+}
+
+.delay-400 {
+    animation-delay: 0.4s;
+}
+
+.delay-500 {
+    animation-delay: 0.5s;
+}
+
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.hover-glow:hover {
+    box-shadow: 0 0 20px rgba(255, 107, 157, 0.8);
+    transition: box-shadow 0.3s ease;
+}
+
+.hover-rotate {
+    transition: transform 0.3s ease;
+}
+
+.hover-rotate:hover {
+    transform: rotate(5deg);
+}
+
+@keyframes dots {
+
+    0%,
+    20% {
+        content: '.';
+    }
+
+    40% {
+        content: '..';
+    }
+
+    60%,
+    100% {
+        content: '...';
+    }
+}
+
+@keyframes particle {
+    0% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--tx), var(--ty));
+        opacity: 0;
+    }
+}
+
+@keyframes curtainReveal {
+    from {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+
+    to {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
