@@ -31,17 +31,17 @@ export const CONFIG = {
         COUPLE_AVATAR: "/music/pics/Avatar.jpeg",
 
         // How We Met section
-        STORY_PHOTO_1: "/music/pics/1.mp4",
-        STORY_PHOTO_2: "https://picsum.photos/800/800?random=3",
-        STORY_PHOTO_3: "https://picsum.photos/800/800?random=4",
+        STORY_PHOTO_1: "/music/pics/2.jpeg",
+        STORY_PHOTO_2: "/music/pics/3.jpeg",
+        STORY_PHOTO_3: "/music/pics/4.jpeg",
 
         // Memories carousel
-        MEMORY_PHOTO_1: "https://picsum.photos/1200/800?random=5",
-        MEMORY_PHOTO_2: "https://picsum.photos/1200/800?random=6",
-        MEMORY_PHOTO_3: "https://picsum.photos/1200/800?random=7",
-        MEMORY_PHOTO_4: "https://picsum.photos/1200/800?random=8",
-        MEMORY_PHOTO_5: "https://picsum.photos/1200/800?random=9",
-        MEMORY_PHOTO_6: "https://picsum.photos/1200/800?random=10",
+        MEMORY_PHOTO_1: "/music/pics/5.jpeg",
+        MEMORY_PHOTO_2: "/music/pics/6.jpeg",
+        MEMORY_PHOTO_3: "/music/pics/7.jpeg",
+        MEMORY_PHOTO_4: "/music/pics/8.jpeg",
+        MEMORY_PHOTO_5: "/music/pics/9.jpeg",
+        MEMORY_PHOTO_6: "/music/pics/10.jpeg",
 
         // Background montage
         LETTER_BG_1: "https://picsum.photos/1200/800?random=11",
