@@ -28,7 +28,7 @@ export const CONFIG = {
     // Using placeholder images for demonstration. 
     // Replace these URLs with local paths like "images/story/photo1.jpg"
     IMAGES: {
-        COUPLE_AVATAR: "/music/pics/Avatar.PNG",
+        COUPLE_AVATAR: "/music/pics/Avatar.jpeg",
 
         // How We Met section
         STORY_PHOTO_1: "https://picsum.photos/800/800?random=2",
