@@ -31,14 +31,14 @@ export const CONFIG = {
         COUPLE_AVATAR: "/music/pics/Avatar.jpeg",
 
         // How We Met section
-        STORY_PHOTO_1: "/music/pics/2.jpeg",
+        STORY_VIDEO_1: "/music/pics/1.mp4",
         STORY_PHOTO_2: "/music/pics/3.jpeg",
         STORY_PHOTO_3: "/music/pics/4.jpeg",
 
         // Memories carousel
-        MEMORY_PHOTO_1: "/music/pics/5.jpeg",
+        MEMORY_PHOTO_1: "/music/pics/7.jpeg",
         MEMORY_PHOTO_2: "/music/pics/6.jpeg",
-        MEMORY_PHOTO_3: "/music/pics/7.jpeg",
+        MEMORY_PHOTO_3: "/music/pics/2.jpeg",
         MEMORY_PHOTO_4: "/music/pics/8.jpeg",
         MEMORY_PHOTO_5: "/music/pics/9.jpeg",
         MEMORY_PHOTO_6: "/music/pics/10.jpeg",
@@ -100,7 +100,9 @@ export const CONFIG = {
         "Your Beautiful Eyes",
         "How You Understand Me",
         "Everything About You",
-        "ou bzffffff dl7wayj okhrin"
+        "ou bzffffff dl7wayj okhrin",
+        "wa glnaalk bzzfffff dl7wayj okhrin",
+        "okk 3ytili ngolhomlk azin hhhh"
     ],
 
     // ============ SECRET HEARTS MESSAGES ============

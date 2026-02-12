@@ -170,9 +170,16 @@ const MainContent: React.FC<MainContentProps> = ({ startAudio }) => {
                    <p className="font-serif-body text-lg text-gray-700 italic">{CONFIG.STORY_PARAGRAPHS[0]}</p>
                  </div>
                  <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 bg-pink-500 rounded-full border-4 border-white z-10 hidden md:block"></div>
-                 <div className="flex-1 order-1 md:order-2 pl-8">
-                   <img src={CONFIG.IMAGES.STORY_PHOTO_1} className="rounded-lg shadow-lg hover:scale-105 transition-transform duration-500 w-full md:w-80" alt="Story 1"/>
-                 </div>
+                  <div className="flex-1 order-1 md:order-2 pl-8">
+                    <video 
+                      src={CONFIG.IMAGES.STORY_VIDEO_1} 
+                      autoPlay 
+                      loop 
+                      muted 
+                      playsInline
+                      className="rounded-lg shadow-lg hover:scale-105 transition-transform duration-500 w-full md:w-80"
+                    />
+                  </div>
                </div>
 
                {/* Item 2 */}
