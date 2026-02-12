@@ -102,7 +102,8 @@ export const CONFIG = {
         "Everything About You",
         "ou bzffffff dl7wayj okhrin",
         "wa glnaalk bzzfffff dl7wayj okhrin",
-        "okk 3ytili ngolhomlk azin hhhh"
+        "okk 3ytili ngolhomlk azin hhhh",
+        "looove youuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu"
     ],
 
     // ============ SECRET HEARTS MESSAGES ============
