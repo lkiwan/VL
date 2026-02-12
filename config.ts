@@ -31,7 +31,7 @@ export const CONFIG = {
         COUPLE_AVATAR: "/music/pics/Avatar.jpeg",
 
         // How We Met section
-        STORY_PHOTO_1: "https://picsum.photos/800/800?random=2",
+        STORY_PHOTO_1: "/music/pics/1.mp4",
         STORY_PHOTO_2: "https://picsum.photos/800/800?random=3",
         STORY_PHOTO_3: "https://picsum.photos/800/800?random=4",
 
@@ -99,14 +99,15 @@ export const CONFIG = {
         "The Way You Support Me",
         "Your Beautiful Eyes",
         "How You Understand Me",
-        "Everything About You"
+        "Everything About You",
+        "ou bzffffff dl7wayj okhrin"
     ],
 
     // ============ SECRET HEARTS MESSAGES ============
     SECRET_MESSAGES: [
         "You make every day brighter! ☀️",
         "I love your laugh! 😊",
-        "You're my best friend! 🌟"
+        "You're my love! 🌟"
     ],
 
     // ============ FUTURE DREAMS ============
